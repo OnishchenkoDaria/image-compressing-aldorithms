@@ -22,3 +22,6 @@ def unblockify(blocks, block_size=8):
     h_blocks, w_blocks, _, _ = blocks.shape
     return blocks.reshape(h_blocks * block_size,
                           w_blocks * block_size)
+
+def threshold_coeffs(coeffs: np.ndarray, threshold: float):
+    return np.where(np.abs(coeffs) < threshold, 0, coeffs)
