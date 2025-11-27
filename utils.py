@@ -25,3 +25,12 @@ def unblockify(blocks, block_size=8):
 
 def threshold_coeffs(coeffs: np.ndarray, threshold: float):
     return np.where(np.abs(coeffs) < threshold, 0, coeffs)
+
+def mse(original: np.ndarray, reconstructed: np.ndarray):
+    return np.mean((original - reconstructed) ** 2)
+
+def psnr(original: np.ndarray, reconstructed: np.ndarray):
+    m = mse(original, reconstructed)
+    if m == 0:
+        return float('inf')
+    return 10 * np.log10((255 ** 2) / m)
